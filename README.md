@@ -62,7 +62,7 @@ spring-mvc-demo/
 ├── pom.xml
 
 ### pom.xml :
-
+```
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
@@ -94,9 +94,9 @@ spring-mvc-demo/
         </dependency>
     </dependencies>
 </project>
-
+```
 ### MvcApplication.java (Main Class):
-
+```
 package com.example.mvc;
 
 import org.springframework.boot.SpringApplication;
@@ -108,9 +108,9 @@ public class MvcApplication {
         SpringApplication.run(MvcApplication.class, args);
     }
 }
-
+```
 ### HomeController.java (Controller):
-
+```
 package com.example.mvc;
 
 import org.springframework.stereotype.Controller;
@@ -126,19 +126,46 @@ public class HomeController {
         return "index";  // refers to index.html in templates folder
     }
 }
+```
 ### index.html (View – inside src/main/resources/templates/):
-
+```
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring MVC</title>
+    <title>Spring Boot MVC</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <!-- JS -->
+    <script th:src="@{/js/script.js}"></script>
 </head>
 <body>
-    <h1 th:text="${message}">Default Message</h1>
+<div class="container">
+    <h1 id="message" th:text="${message}"></h1>
+    <p>Welcome to our first MVC app!</p>
+
+    <!-- Buttons -->
+    <button onclick="showMessage()">Click for Alert</button>
+    <button onclick="changeText()">Change Text</button>
+</div>
 </body>
 </html>
 
-### application.properties:
- server.port=8081
 
+```
+### application.properties:
+ ```
+spring.application.name=demo
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=saa
+spring.datasource.password=
+spring.h2.console.enabled=true
+```
+
+### Output
+<img width="1048" height="702" alt="image" src="https://github.com/user-attachments/assets/d9341107-585a-482d-8989-d67bafa67b76" />
+
+## Result
+Thus the development of a simple Spring Boot MVC application is completed successfully
 
